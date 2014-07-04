@@ -40,4 +40,18 @@ class ErrorHandlerTest extends \PHPUnit_Framework_TestCase
         
         trigger_error(E_USER_ERROR);
     }
+    
+    public function testRestoreHandler()
+    {
+        $output = 'RESTORED';
+        $this->expectOutputString($output);
+    
+        set_error_handler(function () use ($output) {echo $output;});
+        
+        $errorHandler = new \Achsoft\Component\ErrorHandler\ErrorHandler();
+        $errorHandler->register();
+        $errorHandler->restore();
+        
+        trigger_error(E_USER_ERROR);
+    }
 }

@@ -17,7 +17,7 @@ namespace Achsoft\Component\ErrorHandler;
  * 
  * @author Achmad F. Ibrahim <acfatah@gmail.com>
  * @package Achsoft\Component\ErrorHandler
- * @version 0.1.0
+ * @version 0.1.1
  * @since 0.1.0
  */
 class ErrorHandler
@@ -65,6 +65,16 @@ class ErrorHandler
         ini_set('display_errors', true);
         ini_set('html_errors', false);
         set_error_handler([$this, 'handle']);
+    }
+    
+    /**
+     * Restore default error handler.
+     *
+     * @since 0.1.1
+     */
+    public function restore()
+    {
+        restore_error_handler();
     }
     
     /**
