@@ -12,6 +12,22 @@
 
 namespace Achsoft\Component\ErrorHandler;
 
+use Achsoft\Component\ErrorHandler\Exception\CompileErrorException;
+use Achsoft\Component\ErrorHandler\Exception\CompileWarningException;
+use Achsoft\Component\ErrorHandler\Exception\CoreErrorException;
+use Achsoft\Component\ErrorHandler\Exception\CoreWarningException;
+use Achsoft\Component\ErrorHandler\Exception\DeprecatedException;
+use Achsoft\Component\ErrorHandler\Exception\ErrorException;
+use Achsoft\Component\ErrorHandler\Exception\NoticeException;
+use Achsoft\Component\ErrorHandler\Exception\ParseException;
+use Achsoft\Component\ErrorHandler\Exception\RecoverableErrorException;
+use Achsoft\Component\ErrorHandler\Exception\StrictException;
+use Achsoft\Component\ErrorHandler\Exception\UserDeprecatedException;
+use Achsoft\Component\ErrorHandler\Exception\UserErrorException;
+use Achsoft\Component\ErrorHandler\Exception\UserNoticeException;
+use Achsoft\Component\ErrorHandler\Exception\UserWarningException;
+use Achsoft\Component\ErrorHandler\Exception\WarningException;
+
 /**
  * Handle all Php errors as exceptions.
  *
@@ -45,7 +61,7 @@ class ErrorHandler
              case E_COMPILE_ERROR:
                  throw new CompileErrorException($errstr, 0, $errno, $errfile, $errline);
              case E_COMPILE_WARNING:
-                 throw new CoreWarningException($errstr, 0, $errno, $errfile, $errline);
+                 throw new CompileWarningException($errstr, 0, $errno, $errfile, $errline);
              case E_USER_ERROR:
                  throw new UserErrorException($errstr, 0, $errno, $errfile, $errline);
              case E_USER_WARNING:
