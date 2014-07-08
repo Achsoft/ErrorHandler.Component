@@ -12,17 +12,17 @@
 
 namespace Achsoft\Component\ErrorHandler\Exception;
 
+use Achsoft\Component\ErrorHandler\Exception\ErrorException;
+
 /**
- * Base ErrorException class.
- *
- * Thrown on E_ERROR error. This class wraps \ErrorException.
+ * Thrown on E_WARNING error.
  *
  * @author Achmad F. Ibrahim <acfatah@gmail.com>
  * @package Achsoft\Component\ErrorHandler\Exception
  * @version 0.2.0
- * @since 0.1.0
+ * @since 0.2.0
  */
-class ErrorException extends \ErrorException
+class WarningException extends ErrorException
 {
 
 }
