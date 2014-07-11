@@ -20,7 +20,6 @@ use Achsoft\Component\ErrorHandler\Exception\ErrorException;
  * @author Achmad F. Ibrahim <acfatah@gmail.com>
  * @package Achsoft\Component\ErrorHandler\Exception
  * @version 0.2.0
- * @since 0.2.0
  */
 class StrictException extends ErrorException
 {

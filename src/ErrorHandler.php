@@ -34,14 +34,11 @@ use Achsoft\Component\ErrorHandler\Exception\WarningException;
  * @author Achmad F. Ibrahim <acfatah@gmail.com>
  * @package Achsoft\Component\ErrorHandler
  * @version 0.2.0
- * @since 0.1.0
  */
 class ErrorHandler
 {
     /**
      * Exception error handler.
-     *
-     * @since 0.2.0
      */
     public function handle($errno, $errstr, $errfile, $errline)
     {
@@ -82,8 +79,6 @@ class ErrorHandler
 
     /**
      * Register exception handler.
-     *
-     * @since 0.1.0
      */
     public function register()
     {
@@ -95,8 +90,6 @@ class ErrorHandler
 
     /**
      * Restore default error handler.
-     *
-     * @since 0.1.1
      */
     public function restore()
     {
