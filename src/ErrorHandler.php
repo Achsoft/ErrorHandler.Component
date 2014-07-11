@@ -26,13 +26,6 @@ class ErrorHandler implements LoggerAwareInterface
     use \Psr\Log\LoggerAwareTrait;
     
     /**
-     * Error reporting directive.
-     *
-     * @var int
-     */
-    private $errorReporting;
-    
-    /**
      * Fatal errors map.
      *
      * @var array
