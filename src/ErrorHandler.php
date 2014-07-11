@@ -26,6 +26,13 @@ class ErrorHandler implements LoggerAwareInterface
     use \Psr\Log\LoggerAwareTrait;
     
     /**
+     * Variable to store log file name.
+     *
+     * @var string
+     */
+    private $logFile;
+
+    /**
      * Fatal errors map.
      *
      * @var array
@@ -78,6 +85,9 @@ class ErrorHandler implements LoggerAwareInterface
     {
         ini_set('display_errors', false);
         ini_set('html_errors', false);
+        if (isset($this->logFile)) {
+            init_set('error_log', $this->logFile);
+        }
         set_error_handler([$this, 'handle']);
         set_exception_handler([$this, 'handleException']);
         register_shutdown_function([$this, 'handleFatal']);
@@ -100,9 +110,24 @@ class ErrorHandler implements LoggerAwareInterface
         //@todo error_log($message);
     }
 
-    public function setErrorReporting($value)
+    /**
+     * Set which PHP errors are reported.
+     *
+     * @param int $level
+     */
+    public function setErrorReporting($level)
     {
-        error_reporting($value);
+        error_reporting($level);
+    }
+
+    /**
+     * Set log file name.
+     *
+     * @param string $value
+     */
+    public function setLogFile($value)
+    {
+        $this->logFile = $value;
     }
 
     /**
