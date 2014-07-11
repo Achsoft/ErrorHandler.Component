@@ -33,7 +33,7 @@ use Achsoft\Component\ErrorHandler\Exception\WarningException;
  *
  * @author Achmad F. Ibrahim <acfatah@gmail.com>
  * @package Achsoft\Component\ErrorHandler
- * @version 0.2.0
+ * @version 0.2.1
  */
 class ErrorHandler
 {
@@ -82,8 +82,7 @@ class ErrorHandler
      */
     public function register()
     {
-        error_reporting(E_ALL);
-        ini_set('display_errors', true);
+        ini_set('display_errors', false);
         ini_set('html_errors', false);
         set_error_handler([$this, 'handle']);
     }
@@ -95,4 +94,15 @@ class ErrorHandler
     {
         restore_error_handler();
     }
+
+    /**
+     * Set error reporting.
+     *
+     * @param int $value
+     */
+    public function setErrorReporting($value)
+    {
+        error_reporting($value);
+    }
+
 }

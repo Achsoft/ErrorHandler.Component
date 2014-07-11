@@ -19,7 +19,7 @@ use Achsoft\Component\ErrorHandler\Exception\ErrorException;
  *
  * @author Achmad F. Ibrahim <acfatah@gmail.com>
  * @package Achsoft\Component\ErrorHandler\Exception
- * @version 0.2.0
+ * @version 0.2.1
  */
 class ParseException extends ErrorException
 {
