@@ -19,8 +19,7 @@ namespace Achsoft\Component\ErrorHandler\Exception;
  *
  * @author Achmad F. Ibrahim <acfatah@gmail.com>
  * @package Achsoft\Component\ErrorHandler\Exception
- * @version 0.2.0
- * @since 0.1.0
+ * @version 0.3.0
  */
 class ErrorException extends \ErrorException
 {

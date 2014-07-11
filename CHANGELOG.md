@@ -1,4 +1,7 @@
-## 0.2.0 (2014.07.08)
+## 0.3.0 (2014.07.11) - BC Breaks
+* Implements Psr\Log logger interface
+
+## 0.2.0 (2014.07.08) - BC Breaks
 * Add exception types based on E_* error types
 * Remove constructor
 * Remove default error exception and its setter

@@ -19,6 +19,11 @@ namespace Test\Unit\ErrorHandler;
  */
 class ErrorHandlerTest extends \PHPUnit_Framework_TestCase
 {
+    public function setUp()
+    {
+        error_reporting(E_ALL);
+    }
+    
     /**
      * @dataProvider exceptionProvider
      */
@@ -66,5 +71,16 @@ class ErrorHandlerTest extends \PHPUnit_Framework_TestCase
         $errorHandler->restore();
         
         trigger_error(E_USER_ERROR);
+    }
+    
+    public function testFatalError()
+    {
+        $exception = '\RuntimeException';
+        $this->setExpectedException($exception);
+        $errorHandler = new \Achsoft\Component\ErrorHandler\ErrorHandler();
+        $errorHandler->register();
+        
+        $x = null;
+        $x->method();
     }
 }
