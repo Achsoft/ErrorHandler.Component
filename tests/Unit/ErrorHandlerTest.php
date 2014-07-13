@@ -10,7 +10,7 @@
  * @license http://opensource.org/licenses/mit-license.php The MIT License (MIT)
  */
 
-namespace Achsoft\Tests\Unit\ErrorHandler;
+namespace Test\Unit\ErrorHandler;
 
 /**
  * ErrorHandler test class.
@@ -19,31 +19,44 @@ namespace Achsoft\Tests\Unit\ErrorHandler;
  */
 class ErrorHandlerTest extends \PHPUnit_Framework_TestCase
 {
-    public function testRaiseException()
+    /**
+     * @dataProvider exceptionProvider
+     */
+    public function testRaiseException($errno, $exception)
     {
-        $this->setExpectedException('\Achsoft\Component\ErrorHandler\Exception\ErrorException');
-        
-        $errorHandler = new \Achsoft\Component\ErrorHandler\ErrorHandler();
-        $errorHandler->register();
-        
-        trigger_error(E_USER_ERROR);
-    }
-    
-    public function testSetException()
-    {
-        $exception = '\ErrorException';
         $this->setExpectedException($exception);
         
         $errorHandler = new \Achsoft\Component\ErrorHandler\ErrorHandler();
         $errorHandler->register();
-        $errorHandler->setException($exception);
         
-        trigger_error(E_USER_ERROR);
+        // only works with the E_USER family of constant
+        trigger_error($errno);
+    }
+    
+    public function exceptionProvider()
+    {
+        return [
+            [E_ERROR, '\Achsoft\Component\ErrorHandler\Exception\ErrorException'],
+//            [E_WARNING, '\Achsoft\Component\ErrorHandler\Exception\WarningException'],
+//            [E_PARSE, '\Achsoft\Component\ErrorHandler\Exception\ParseException'],
+//            [E_NOTICE, '\Achsoft\Component\ErrorHandler\Exception\NoticeException'],
+//            [E_CORE_ERROR, '\Achsoft\Component\ErrorHandler\Exception\CoreErrorException'],
+//            [E_CORE_WARNING, '\Achsoft\Component\ErrorHandler\Exception\CoreWarningException'],
+//            [E_COMPILE_ERROR, '\Achsoft\Component\ErrorHandler\Exception\CompileErrorException'],
+//            [E_COMPILE_WARNING, '\Achsoft\Component\ErrorHandler\Exception\CompileWarningException'],
+//            [E_USER_ERROR, '\Achsoft\Component\ErrorHandler\Exception\UserErrorException'],
+//            [E_USER_WARNING, '\Achsoft\Component\ErrorHandler\Exception\UserWarningException'],
+            [E_USER_NOTICE, '\Achsoft\Component\ErrorHandler\Exception\UserNoticeException'],
+//            [E_STRICT, '\Achsoft\Component\ErrorHandler\Exception\StrictException'],
+//            [E_RECOVERABLE_ERROR, '\Achsoft\Component\ErrorHandler\Exception\RecoverableException'],
+//            [E_DEPRECATED, '\Achsoft\Component\ErrorHandler\Exception\DeprecatedException'],
+//            [E_USER_DEPRECATED, '\Achsoft\Component\ErrorHandler\Exception\UserDeprecatedException'],
+        ];
     }
     
     public function testRestoreHandler()
     {
-        $output = 'RESTORED';
+        $output = 'RESTORED PREVIOUS ERROR HANDLER...';
         $this->expectOutputString($output);
     
         set_error_handler(function () use ($output) {echo $output;});
